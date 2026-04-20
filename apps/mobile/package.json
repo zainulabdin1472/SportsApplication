@@ -24,9 +24,11 @@
     "expo-linear-gradient": "^55.0.13",
     "expo-status-bar": "latest",
     "react": "latest",
+    "react-dom": "19.2.0",
     "react-native": "latest",
     "react-native-safe-area-context": "latest",
     "react-native-screens": "latest",
+    "react-native-web": "~0.21.0",
     "zod": "latest"
   },
   "devDependencies": {
