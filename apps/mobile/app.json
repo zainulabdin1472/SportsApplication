@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "SportsApp",
+    "slug": "sportsapp-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sportsapp.mobile"
+    },
+    "android": {
+      "package": "com.sportsapp.mobile"
+    },
+    "extra": {
+      "apiUrl": "${EXPO_PUBLIC_API_URL}"
+    }
+  }
+}
