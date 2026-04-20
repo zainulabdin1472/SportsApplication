@@ -18,9 +18,11 @@ Production-grade starter for a mobile-only SaaS product:
 1. Copy `.env.example` to `.env` and fill values.
 2. Install dependencies:
    - `npm install`
-3. Start API:
+3. Apply database migrations to Supabase (requires `DATABASE_URL` in `.env` — use the **URI** from Supabase → *Project Settings* → *Database*, including `?sslmode=require`):
+   - `npm run db:migrate`
+4. Start API:
    - `npm run dev:api`
-4. Start mobile app:
+5. Start mobile app:
    - `npm run dev:mobile`
 
 ## API Endpoints (v1)
