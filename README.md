@@ -26,7 +26,8 @@ Production-grade starter for a mobile-only SaaS product:
 ## API Endpoints (v1)
 
 - `GET /api/v1/health`
-- `GET /api/v1/listings`
+- `GET /api/v1/listings` (supports `search`, `city`, `condition`, `minPrice`, `maxPrice`, `limit`, `offset`)
+- `GET /api/v1/listings/:id`
 - `POST /api/v1/listings` (requires `x-user-id` for now)
 
 ## Test API

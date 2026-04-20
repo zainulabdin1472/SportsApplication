@@ -12,11 +12,16 @@
     "build": "expo export --platform all"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.1.1",
+    "@react-native-async-storage/async-storage": "^3.0.2",
     "@react-navigation/bottom-tabs": "latest",
     "@react-navigation/native": "latest",
     "@react-navigation/native-stack": "latest",
     "@tanstack/react-query": "latest",
     "expo": "latest",
+    "expo-constants": "latest",
+    "expo-crypto": "^55.0.14",
+    "expo-linear-gradient": "^55.0.13",
     "expo-status-bar": "latest",
     "react": "latest",
     "react-native": "latest",

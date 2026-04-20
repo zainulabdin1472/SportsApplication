@@ -22,6 +22,20 @@ export async function listListings(filters: ListingFilterInput) {
   return data ?? [];
 }
 
+export async function getListingById(id: string) {
+  const { data, error } = await supabase
+    .from("listings")
+    .select("id,seller_id,title,description,price,condition,city,sport_tag,status,created_at")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) throw createHttpError(500, error.message);
+  if (!data) throw createHttpError(404, "Listing not found");
+  if (data.status !== "active") throw createHttpError(404, "Listing not found");
+
+  return data;
+}
+
 export async function createListing(input: CreateListingInput, sellerId: string) {
   const { data, error } = await supabase
     .from("listings")

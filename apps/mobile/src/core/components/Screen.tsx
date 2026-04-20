@@ -1,40 +1,85 @@
 import { ReactNode } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { colors, spacing } from "../theme/tokens";
+import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { spacing } from "../theme/tokens";
+import { AppText } from "./AppText";
+import { GradientBackground } from "./GradientBackground";
+import { GradientTitle } from "./AppText";
 
 type Props = {
-  title: string;
+  title?: string;
   subtitle?: string;
   children: ReactNode;
+  scroll?: boolean;
+  contentStyle?: ViewStyle;
+  headerAccessory?: ReactNode;
 };
 
-export function Screen({ title, subtitle, children }: Props) {
+export function Screen({ title, subtitle, children, scroll, contentStyle, headerAccessory }: Props) {
+  const body = scroll ? (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[styles.scrollContent, contentStyle]}
+    >
+      {children}
+    </ScrollView>
+  ) : (
+    <View style={[styles.content, contentStyle]}>{children}</View>
+  );
+
   return (
-    <View style={styles.root}>
-      <Text style={styles.title}>{title}</Text>
-      {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
-      <View style={styles.content}>{children}</View>
-    </View>
+    <GradientBackground>
+      <SafeAreaView style={styles.safe} edges={["top", "left", "right"]}>
+        {(title || headerAccessory) && (
+          <View style={styles.header}>
+            <View style={styles.headerText}>
+              {title ? <GradientTitle>{title}</GradientTitle> : null}
+              {subtitle ? (
+                <AppText variant="subtitle" style={styles.subtitle}>
+                  {subtitle}
+                </AppText>
+              ) : null}
+            </View>
+            {headerAccessory ? <View style={styles.accessory}>{headerAccessory}</View> : null}
+          </View>
+        )}
+        {body}
+      </SafeAreaView>
+    </GradientBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.background,
-    padding: spacing.md
+  safe: {
+    flex: 1
   },
-  title: {
-    color: colors.text,
-    fontSize: 28,
-    fontWeight: "700"
+  header: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.md,
+    gap: spacing.md
+  },
+  headerText: {
+    flex: 1,
+    gap: spacing.xs
+  },
+  accessory: {
+    paddingTop: spacing.xs
   },
   subtitle: {
-    color: colors.mutedText,
-    marginTop: spacing.xs
+    marginTop: spacing.xxs
   },
   content: {
-    marginTop: spacing.lg,
+    flex: 1,
+    paddingHorizontal: spacing.lg,
+    gap: spacing.md,
+    paddingBottom: spacing.lg
+  },
+  scrollContent: {
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.xxl,
     gap: spacing.md
   }
 });
